@@ -1,0 +1,57 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, black, purple);
+}
+
+.label {
+    -fx-text-fill: red;
+}
+
+.scroll-pane {
+	-fx-background-color: linear-gradient(to bottom right, black, purple);
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #ffeecc, #ffcc99);
+    -fx-background-radius: 5, 4, 3, 5;
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-padding: 7 30 7 30;
+    -fx-text-fill: #663300; /* Text color, adjust as needed */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #996633; /* Border color, adjust as needed */
+    -fx-border-width: 2;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffcc99, #ffaa66);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #996633, #cc9933);
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-padding: 8 29 8 31;
+}
+
+.button#quit {
+    -fx-background-color: linear-gradient(to bottom, #90ee90, #65c765);
+    -fx-background-radius: 5, 4, 3, 5;
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-padding: 7 30 7 30;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-border-color: #5ba85b;
+    -fx-border-width: 2;
+}
+
+/* Hover effect for the buttons */
+.button#quit:hover {
+    -fx-background-color: linear-gradient(to bottom, #65c765, #3ca53c);
+}
+
+/* Pressed effect for the buttons */
+.button#quit:pressed {
+    -fx-background-color: linear-gradient(to bottom, #5ba85b, #398b39);
+    -fx-background-insets: 0, 1, 2, 0;
+    -fx-padding: 8 29 8 31;
+}
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
