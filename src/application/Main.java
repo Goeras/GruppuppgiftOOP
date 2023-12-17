@@ -35,11 +35,6 @@ public class Main extends Application{
 		
 		Scene scene = new Scene(vBox, 200, 200);
 		primaryStage.setScene(scene);
-		
-		System.out.println("starting stage");
-		System.out.println("starting stage");
-
-		
 		primaryStage.show();
 	}
 }
