@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class ShowTimesStage {
 
-	GamePlay gamePlay = new GamePlay();
+	// GamePlay gamePlay = new GamePlay(); // Behöver samma gameplay som i main..
 	
 	
 	@SuppressWarnings("unchecked")

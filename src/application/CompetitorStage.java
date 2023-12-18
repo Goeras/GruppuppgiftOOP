@@ -59,7 +59,7 @@ public class CompetitorStage {
 		startGame.setVisible(true);
 		startGame.setOnAction( e -> {
 			if (!gameStarted) {
-			gamePlay.setStartType(startType);
+			//gamePlay.setStartType(startType);
 			gamePlay.setCompetitorList(competitors);
 			gamePlay.startTimers();
 			gamePlay.setObjektLastTime();
