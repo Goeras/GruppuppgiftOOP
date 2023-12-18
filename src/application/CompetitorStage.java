@@ -93,6 +93,7 @@ public class CompetitorStage {
 		goBack.setText("Avsluta tävling");
 		goBack.setOnAction( e -> {
 			gamePlay.setFinnishTimes();
+			gameStarted = false;
 			stage.close();
 		});
 
@@ -160,6 +161,11 @@ public class CompetitorStage {
 				System.out.println(t.format(formatter));
 			}
 		}
+	}
+	
+	public void setGamePlayStartType(String startType)
+	{
+		gamePlay.setStartType(startType);
 	}
 
 }

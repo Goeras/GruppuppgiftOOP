@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
 	
 	CompetitorStage competitorStage = new CompetitorStage();
+	BoxForChoice choiceBox = new BoxForChoice(); 
 
 
 	public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class Main extends Application{
 		Button btnAddCompetitor = new Button("Lägg till deltagare");
 		
 		Button btnCompetition = new Button("Tävlingsfönster");
-		btnCompetition.setVisible(false);
+		btnCompetition.setVisible(false); // gömer knappen tills användare tryckt på knappen för starttyp.
 		btnCompetition.setOnAction(e -> {
 			try {
 				competitorStage.startCompetitorStage();
@@ -35,7 +36,10 @@ public class Main extends Application{
 		
 		Button btnContestType = new Button("Välj starttyp");
 		btnContestType.setOnAction( e -> {
-			btnCompetition.setVisible(true);
+			btnCompetition.setVisible(true); // visar knappen för tävlingsfönster.
+			String choice = choiceBox.choiceBox();
+			System.out.println(choice);
+			competitorStage.setGamePlayStartType(choice);
 			// valbara alternativ: String startType = "Masstart", "Jaktstart", "Individuellstart"
 			//competitorStage.setGamePlayStartType(startType); // tänkbart problem: objektet är ej skapat förens i CompetitorStage klassen.
 		});
@@ -50,4 +54,5 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
+	
 }

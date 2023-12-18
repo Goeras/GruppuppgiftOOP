@@ -1,5 +1,6 @@
 package application;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -29,17 +30,18 @@ public class Competitor {
 	}
 	
 	// Metoder
-	public LocalTime durationBetweenTwoLocalTimes(LocalTime a, LocalTime b)
-	{
-		System.out.println("durationBetweenTwoLocalTimes called, "+LocalTime.now());
-		long hours = a.until(b, java.time.temporal.ChronoUnit.HOURS);
-		long minutes = a.until(b, java.time.temporal.ChronoUnit.MINUTES);
-		long seconds = a.until(b, java.time.temporal.ChronoUnit.SECONDS);
-		long nanos = a.until(b, java.time.temporal.ChronoUnit.NANOS);
-		
-		LocalTime diffTime = LocalTime.of((int)hours, (int)minutes, (int)seconds, (int)nanos);
-		
-		return diffTime;
+	public LocalTime durationBetweenTwoLocalTimes(LocalTime a, LocalTime b) {
+	    
+	    Duration duration = Duration.between(a, b); // jämför skillnaden
+
+	    long hours = duration.toHours(); // Delar upp skillnaden i timmar, minuter, sekunder och nano.
+	    long minutes = duration.toMinutesPart();
+	    long seconds = duration.toSecondsPart();
+	    long nanos = duration.toNanosPart();
+
+	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanos); // skapar en LocalTime av tidigare värden ur int-parametrar.
+
+	    return diffTime;
 	}
 	
 	public String localTimeToString(LocalTime localTime)
