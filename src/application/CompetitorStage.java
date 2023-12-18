@@ -147,7 +147,6 @@ public class CompetitorStage {
 
 	// Lägger till en ny tid till den tävlandes lista med tider..
 	public void setNewTime(Competitor c){
-		System.out.println("Setting a new time..");
 		c.addTime(LocalTime.now());
 	}
 
@@ -155,10 +154,9 @@ public class CompetitorStage {
 	public void showAllTimes(){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		for(Competitor c : competitors) {
-			System.out.println("Tävlande: "+c.getName()+ ", Startnummer: "+c.getStartNumber());
 			for(LocalTime t : c.getTimesList())
 			{
-				System.out.println(t.format(formatter));
+				System.out.println(t.format(formatter)); // Funktionen ej färdig.. endast i testsfyte.
 			}
 		}
 	}

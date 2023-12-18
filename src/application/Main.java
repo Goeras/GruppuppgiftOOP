@@ -38,7 +38,6 @@ public class Main extends Application{
 		btnContestType.setOnAction( e -> {
 			btnCompetition.setVisible(true); // visar knappen för tävlingsfönster.
 			String choice = choiceBox.choiceBox();
-			System.out.println(choice);
 			competitorStage.setGamePlayStartType(choice);
 			// valbara alternativ: String startType = "Masstart", "Jaktstart", "Individuellstart"
 			//competitorStage.setGamePlayStartType(startType); // tänkbart problem: objektet är ej skapat förens i CompetitorStage klassen.

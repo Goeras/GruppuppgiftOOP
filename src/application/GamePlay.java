@@ -53,7 +53,6 @@ public class GamePlay {
 			{
 				c.setStartNumber(startNumber); // Sätter startnummer.
 				startNumber++;
-				System.out.println("Jakt startid, "+c.getName()+", "+ plusTime.toString()); // felsökningsprint..
 				//plusTime.plusSeconds(diffTime); // lägger till starttid.
 				c.setStartTime(plusTime); // sätter starttiden hos objektet.
 				plusTime = plusTime.plusSeconds(30); // Lägger till 30 sekunder på starttiden för varje åkare.
@@ -72,7 +71,6 @@ public class GamePlay {
 			{
 				LocalTime newStartTime = LocalTime.now(); // Första starttid = NU. Andra starttid = NU+åkarens finnishTime mellanskillnad mot vinnaren.
 				LocalTime timeToAddLocalTime = c.durationBetweenTwoLocalTimes(lastWinner.getFinnishTime(), c.getFinnishTime()); // lägger till mellanskillnad
-				System.out.println("indiviudellstart newStartTime: "+newStartTime+ "timeToAdd: "+timeToAddLocalTime);
 				
 				//Duration timeToAddDuration = Duration.between(LocalTime.MIDNIGHT, timeToAddLocalTime); // gör om en LocalTime till en Duration då man inte kan plussa en LocalTime med en annan LocalTime.
 				
@@ -81,7 +79,6 @@ public class GamePlay {
 				
 				c.setStartNumber(startNumber); // Sätter startnummer till objektet
 				startNumber++; // Räknar upp startnummer med 1 till nästa åkare.
-				System.out.println("Namn: "+c.getName()+", starttid: "+c.getStartTime());
 			}
 		}
 	}
