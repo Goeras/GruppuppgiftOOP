@@ -74,10 +74,10 @@ public class Competitor {
         return firstTime != null ? firstTime.toString() : "";
     }
 	public void setLastPartTime() {
-		LocalTime startTime = timesList.get(0);
-	    LocalTime lastTime = timesList.get(timesList.size() - 1);
+		LocalTime startTime = timesList.get(0); // hämtar första tiden i Listan
+	    LocalTime lastTime = timesList.get(timesList.size() - 1); // hämtar sista tiden i Listan
 
-	    long nanosDiff = ChronoUnit.NANOS.between(startTime, lastTime);
+	    long nanosDiff = ChronoUnit.NANOS.between(startTime, lastTime); // räknar ut diff mellan första och sista tiden
 	    long hours = nanosDiff / 3_600_000_000_000L;
 	    nanosDiff %= 3_600_000_000_000L;
 	    long minutes = nanosDiff / 60_000_000_000L;
@@ -85,7 +85,7 @@ public class Competitor {
 	    long seconds = nanosDiff / 1_000_000_000L;
 	    nanosDiff %= 1_000_000_000L;
 
-	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanosDiff);
+	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanosDiff); // Sätter ihop en LocalTime från ovanstående variabel-värden
 		this.lastPartTime = diffTime;
 	}
 	

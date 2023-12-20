@@ -25,11 +25,9 @@ public class CompetitorStage {
 	private Button setTime;
 	private Button showTime;
 	private Button goBack;
-	
-	private String startType;
 	private Competitor choice;
 	private boolean gameStarted;
-	public ObservableList<Competitor> competitors = FXCollections.observableArrayList();
+	public ObservableList<Competitor> competitors = FXCollections.observableArrayList(); // Här skall Competitor-objekten läggas till efter skapande.
 
 	@SuppressWarnings("unchecked")
 	public void startCompetitorStage() throws Exception {

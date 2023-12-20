@@ -1,6 +1,5 @@
 package application;
 
-import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,9 +10,9 @@ public class GamePlay {
 
 	// Attribut
 	String startTime; // Huvudsaklig starttid. (masstart eller första startande)
-	String startType;
+	String startType; // "Massstart" / "Jaktstart" / "Individuellstart". sätts av användaren.
 	int diffTime = 0;
-	List<Competitor> competitorList = new ArrayList<>();
+	List<Competitor> competitorList = new ArrayList<>(); // Lista över deltagare - Competitor
 	
 	// Konstruktorer
 	public GamePlay() {
@@ -24,7 +23,7 @@ public class GamePlay {
 	}
 	
 	// Metoder
-	public void setFinnishTimes()
+	public void setFinnishTimes() // Sätter sluttiden från senaste Tid i objektets lista.
 	{
 		for(Competitor c : competitorList)
 		{
@@ -32,7 +31,7 @@ public class GamePlay {
 		}
 	}
 	
-	public void startTimers() 
+	public void startTimers()  // Sätter starttiden baserat på Starttyp. 
 	{
 		int startNumber = 1;
 		if(startType.equals("Masstart"))// Alla startar samtidigt.
@@ -46,19 +45,19 @@ public class GamePlay {
 				//c.addTimeStamp(); // lägger till en LocalTime.now() för varje objekt.
 			}
 		}
-		else if(startType.equals("Jaktstart")) // Start med 15/30 sekunders mellanrum.
+		else if(startType.equals("Jaktstart")) // Start med 30 sekunders mellanrum.
 		{ 
 			LocalTime plusTime = LocalTime.now(); // variabel för starttid. första åkare = LocalTIme.now(), åkare nr2 = localTime.now()+30 sekunder osv..
 			for(Competitor c : competitorList)
 			{
 				c.setStartNumber(startNumber); // Sätter startnummer.
 				startNumber++;
-				//plusTime.plusSeconds(diffTime); // lägger till starttid.
+				
 				c.setStartTime(plusTime); // sätter starttiden hos objektet.
 				plusTime = plusTime.plusSeconds(30); // Lägger till 30 sekunder på starttiden för varje åkare.
 			}
 		}
-		else if(startType.equals("Individuellstart")) // Start baserat på tidigare finnishTime. Behöver sorterar efter finnishTime.
+		else if(startType.equals("Individuellstart")) // Start baserat på tidigare finnishTime.
 		{
 			List<Competitor> sortedByFinnishTime = new ArrayList<>();
 			sortedByFinnishTime.addAll(competitorList); // kopia på listan över tävlande so skall sorteras efter senaste åktid.
@@ -95,24 +94,6 @@ public class GamePlay {
 	{
 		competitor.addTimeStamp(); // Lägger till LocalTime.now() till objektets timesList.
 	}
-	
-	/*
-	 * public void setStartTime(LocalTime startTime, int diffTime) // Sätter
-	 * starttid utifrån startyp och val av difftid (0, 15 eller 30 sekunder) { if
-	 * (startType.equals("Masstart")) { for(Competitor c : competitorList) {
-	 * c.setStartTime(startTime); } } // Jaktstart, sätter varje deltagares starttid
-	 * till 15/30sek efter den tidigare startande. else
-	 * if(startType.equals("Jaktstart")) { LocalTime plusTime = startTime;
-	 * for(Competitor c : competitorList) { plusTime.plusSeconds(diffTime);
-	 * c.setStartTime(plusTime); } } else if(startType.equals("Individuell")) {
-	 * for(Competitor c : competitorList) { LocalTime timeToAdd =
-	 * c.getFinnishTime(); int hours = timeToAdd.getHour(); int minutes =
-	 * timeToAdd.getMinute(); int seconds = timeToAdd.getSecond(); int nanoSeconds =
-	 * timeToAdd.getNano();
-	 * 
-	 * c.setStartTime(startTime.plusHours(hours).plusMinutes(minutes).plusSeconds(
-	 * seconds).plusNanos(nanoSeconds)); } } }
-	 */
 	
 	// Getters & Setters
 	public String getStartType() {
