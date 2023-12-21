@@ -197,6 +197,7 @@ public class CompetitorStage {
         newRoot.getChildren().addAll(new TextField("Competitor Name Below"), nameTextField,
                                       new TextField("Ski Team Below"), skiTeamTextField, newBtn);
         Scene newScene = new Scene(newRoot, 300, 200);
+        newScene.getStylesheets().add("application/application.css");
         newStage.setScene(newScene);
         newStage.setTitle("New Competitor Window");
         newStage.show();
