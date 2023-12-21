@@ -21,6 +21,7 @@ public class BoxForChoice{
 		Button btnChoice = new Button("Välj");
 		
 		ChoiceBox<String> choiceBox = new ChoiceBox<>();
+		choiceBox.getStyleClass().add("choice-box");
 		choiceBox.getItems().addAll("Masstart", "Jaktstart", "Individuellstart");
 		choiceBox.setValue("Masstart");
         
@@ -34,7 +35,8 @@ public class BoxForChoice{
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.CENTER);
         
-        Scene scene = new Scene(vBox, 200, 200);
+        Scene scene = new Scene(vBox, 350, 400);
+        scene.getStylesheets().add("application/application.css");
         stage.setScene(scene);
         stage.showAndWait();
         

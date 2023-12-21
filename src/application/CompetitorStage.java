@@ -139,6 +139,7 @@ public class CompetitorStage {
 		borderPane.setBottom(vBoxButtons);
 
 		Scene scene = new Scene(borderPane, 305, 450);
+		scene.getStylesheets().add("application/application.css");
 		stage.setScene(scene);
 		stage.show();
 	}

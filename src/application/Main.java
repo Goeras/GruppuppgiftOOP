@@ -49,7 +49,8 @@ public class Main extends Application{
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10));
 		
-		Scene scene = new Scene(vBox, 200, 200);
+		Scene scene = new Scene(vBox, 350, 400);
+		scene.getStylesheets().add("application/application.css");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

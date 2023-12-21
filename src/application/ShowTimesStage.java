@@ -1,5 +1,7 @@
 package application;
 
+import javafx.scene.control.Label;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -10,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ShowTimesStage {
@@ -57,6 +60,7 @@ public class ShowTimesStage {
         vBox.setAlignment(Pos.CENTER);
         
         Scene scene = new Scene(vBox, 400, 400);
+        scene.getStylesheets().add("application/application.css");
         stage.setScene(scene);
         stage.show();
 	}

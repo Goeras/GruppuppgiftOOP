@@ -1,6 +1,6 @@
 .root {
 	-fx-font-family: "Calibri";
-	-fx-font-size: 20px;
+	-fx-font-size: 10px;
 	-fx-font-weight: bold;
 	-fx-background-image: url("/application/snowCSS.png");
 	-fx-background-repeat: no-repeat; 
@@ -9,6 +9,8 @@
 
 .label {
 	-fx-text-fill: black;
+	-fx-font-size: 15px;
+	
 }
 
 .button {
@@ -50,8 +52,7 @@
 	
 }
 
-#title { 
-	-fx-font-size: 30px;
-	-fx-text-fill: black;
+.choice-box {
+    -fx-font-size: 15px; 
 }
 
