@@ -45,7 +45,19 @@ public class GamePlay {
 				//c.addTimeStamp(); // lägger till en LocalTime.now() för varje objekt.
 			}
 		}
-		else if(startType.equals("Jaktstart")) // Start med 30 sekunders mellanrum.
+		else if(startType.equals("Jaktstart 15sek")) // Start med 30 sekunders mellanrum.
+		{ 
+			LocalTime plusTime = LocalTime.now(); // variabel för starttid. första åkare = LocalTIme.now(), åkare nr2 = localTime.now()+30 sekunder osv..
+			for(Competitor c : competitorList)
+			{
+				c.setStartNumber(startNumber); // Sätter startnummer.
+				startNumber++;
+				
+				c.setStartTime(plusTime); // sätter starttiden hos objektet.
+				plusTime = plusTime.plusSeconds(30); // Lägger till 30 sekunder på starttiden för varje åkare.
+			}
+		}
+		else if(startType.equals("Jaktstart 30sek")) // Start med 30 sekunders mellanrum.
 		{ 
 			LocalTime plusTime = LocalTime.now(); // variabel för starttid. första åkare = LocalTIme.now(), åkare nr2 = localTime.now()+30 sekunder osv..
 			for(Competitor c : competitorList)

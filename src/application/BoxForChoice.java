@@ -22,7 +22,7 @@ public class BoxForChoice{
 		
 		ChoiceBox<String> choiceBox = new ChoiceBox<>();
 		choiceBox.getStyleClass().add("choice-box");
-		choiceBox.getItems().addAll("Masstart", "Jaktstart", "Individuellstart");
+		choiceBox.getItems().addAll("Masstart", "Jaktstart 15sek","Jaktstart 30sek" , "Individuellstart");
 		choiceBox.setValue("Masstart");
         
         btnChoice.setOnAction( e-> {
