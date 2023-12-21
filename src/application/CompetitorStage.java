@@ -203,12 +203,4 @@ public class CompetitorStage {
         newStage.show();
     }
     
-     /*private void addCompetitor(String name, String skiTeam) {
-        // Create a new Competitor instance and add it to the ObservableList
-        Competitor newCompetitor = new Competitor();
-        newCompetitor.setName(name);
-        newCompetitor.setSkiTeam(skiTeam);
-        competitors.add(newCompetitor);
-    }*/
-
 }
