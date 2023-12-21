@@ -54,7 +54,7 @@ public class GamePlay {
 				startNumber++;
 				
 				c.setStartTime(plusTime); // sätter starttiden hos objektet.
-				plusTime = plusTime.plusSeconds(30); // Lägger till 30 sekunder på starttiden för varje åkare.
+				plusTime = plusTime.plusSeconds(15); // Lägger till 30 sekunder på starttiden för varje åkare.
 			}
 		}
 		else if(startType.equals("Jaktstart 30sek")) // Start med 30 sekunders mellanrum.
