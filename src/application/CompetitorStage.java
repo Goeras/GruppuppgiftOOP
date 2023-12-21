@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class CompetitorStage {
@@ -34,6 +35,7 @@ public class CompetitorStage {
 	public void startCompetitorStage() throws Exception {
 		Stage stage =  new Stage();
 		stage.setTitle("Tour de Ski");
+		stage.initModality(Modality.APPLICATION_MODAL);
 
 		// För testningens skull..
 		if (competitors.isEmpty()){
@@ -69,7 +71,7 @@ public class CompetitorStage {
 			}
 		}); // Lägger till en ebjektets startTime i sin tidslista.
 
-		setTime = new Button("Logga tiden");
+		setTime = new Button("Logga delmål");
 		setTime.setVisible(false);
 		setTime.setOnAction( e -> {
 			if(gameStarted) {
@@ -89,7 +91,7 @@ public class CompetitorStage {
 		});
 
 		goBack = new Button();
-		goBack.setText("Avsluta tävling");
+		goBack.setText("Tillbaka");
 		goBack.setOnAction( e -> {
 			gamePlay.setFinnishTimes();
 			gameStarted = false;
@@ -207,6 +209,7 @@ public class CompetitorStage {
         newScene.getStylesheets().add("application/application.css");
         newStage.setScene(newScene);
         newStage.setTitle("New Competitor Window");
+        newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
     }
     
