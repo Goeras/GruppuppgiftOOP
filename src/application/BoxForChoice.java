@@ -30,6 +30,12 @@ public class BoxForChoice{
         	stage.close();
         	});
         
+        //kryssar man så väljs förifylld starttyp
+        stage.setOnCloseRequest(event -> {
+            getChoice(choiceBox);
+            stage.close();
+        });
+        
         VBox vBox = new VBox();
         vBox.getChildren().addAll(choiceBox, btnChoice);
         vBox.setSpacing(10);
@@ -47,7 +53,7 @@ public class BoxForChoice{
 	public void getChoice(ChoiceBox<String> choiceBox)
 	{
 		choice = choiceBox.getValue();
+		
 	}
-	
 	
 }

@@ -138,6 +138,13 @@ public class CompetitorStage {
 		borderPane.setTop(vBoxLabel);
 		borderPane.setCenter(table);
 		borderPane.setBottom(vBoxButtons);
+		
+		// "Avsluta tävling" aktiveras när man kryssar ner fönstret
+        stage.setOnCloseRequest(event -> {
+        	gamePlay.setFinnishTimes();
+            gameStarted = false;
+            stage.close();
+        });
 
 		Scene scene = new Scene(borderPane, 305, 450);
 		scene.getStylesheets().add("application/application.css");
