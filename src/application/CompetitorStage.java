@@ -171,7 +171,7 @@ public class CompetitorStage {
         VBox newRoot = new VBox(10);
         TextField nameTextField = new TextField();
         TextField skiTeamTextField = new TextField();
-        Button newBtn = new Button("Submit");
+        Button newBtn = new Button("Lägg till");
 
         newBtn.setOnAction(e -> {
             String name = nameTextField.getText();
@@ -184,8 +184,8 @@ public class CompetitorStage {
             newCompetitor.setSkiTeam(skiTeam);
 
             // Bekräftelsemeddelande i main layouten
-            System.out.println("Competitor Name: " + newCompetitor.getName());
-            System.out.println("Ski Team: " + newCompetitor.getSkiTeam());
+            System.out.println("Tävlandes namn: " + newCompetitor.getName());
+            System.out.println("Skidlag: " + newCompetitor.getSkiTeam());
             
             competitors.add(newCompetitor);
 
@@ -194,8 +194,8 @@ public class CompetitorStage {
             skiTeamTextField.clear();
         });
 
-        newRoot.getChildren().addAll(new TextField("Competitor Name Below"), nameTextField,
-                                      new TextField("Ski Team Below"), skiTeamTextField, newBtn);
+        newRoot.getChildren().addAll(new TextField("Ange namnet nedan"), nameTextField,
+                                      new TextField("Ange skidlag nedan"), skiTeamTextField, newBtn);
         Scene newScene = new Scene(newRoot, 300, 200);
         newScene.getStylesheets().add("application/application.css");
         newStage.setScene(newScene);
