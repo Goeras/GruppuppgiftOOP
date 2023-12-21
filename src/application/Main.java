@@ -1,6 +1,8 @@
 package application;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,8 +22,14 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+		CompetitorStage competitorWindow = new CompetitorStage();
+		ObservableList<Competitor> competitors = FXCollections.observableArrayList();
 		Button btnAddCompetitor = new Button("Lägg till deltagare");
+		btnAddCompetitor.setOnAction(e -> {
+			competitorStage.AddCompetitorWindow();
+		});
+
+		
 		
 		Button btnCompetition = new Button("Tävlingsfönster");
 		btnCompetition.setVisible(false); // gömer knappen tills användare tryckt på knappen för starttyp.

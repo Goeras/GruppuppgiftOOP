@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -164,5 +165,49 @@ public class CompetitorStage {
 	{
 		gamePlay.setStartType(startType);
 	}
+	
+    public void AddCompetitorWindow() {
+        Stage newStage = new Stage();
+        VBox newRoot = new VBox(10);
+        TextField nameTextField = new TextField();
+        TextField skiTeamTextField = new TextField();
+        Button newBtn = new Button("Submit");
+
+        newBtn.setOnAction(e -> {
+            String name = nameTextField.getText();
+            String skiTeam = skiTeamTextField.getText();
+            newStage.close();
+
+            // Create a new Competitor instance and set the values
+            Competitor newCompetitor = new Competitor();
+            newCompetitor.setName(name);
+            newCompetitor.setSkiTeam(skiTeam);
+
+            // Bekräftelsemeddelande i main layouten
+            System.out.println("Competitor Name: " + newCompetitor.getName());
+            System.out.println("Ski Team: " + newCompetitor.getSkiTeam());
+            
+            competitors.add(newCompetitor);
+
+            // Clear text fields for the next entry
+            nameTextField.clear();
+            skiTeamTextField.clear();
+        });
+
+        newRoot.getChildren().addAll(new TextField("Competitor Name Below"), nameTextField,
+                                      new TextField("Ski Team Below"), skiTeamTextField, newBtn);
+        Scene newScene = new Scene(newRoot, 300, 200);
+        newStage.setScene(newScene);
+        newStage.setTitle("New Competitor Window");
+        newStage.show();
+    }
+    
+     /*private void addCompetitor(String name, String skiTeam) {
+        // Create a new Competitor instance and add it to the ObservableList
+        Competitor newCompetitor = new Competitor();
+        newCompetitor.setName(name);
+        newCompetitor.setSkiTeam(skiTeam);
+        competitors.add(newCompetitor);
+    }*/
 
 }
