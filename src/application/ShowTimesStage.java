@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ShowTimesStage {
@@ -22,6 +23,7 @@ public class ShowTimesStage {
 	{
 		Stage stage = new Stage();
 		stage.setTitle("Deltagare");
+		stage.initModality(Modality.APPLICATION_MODAL);
 		
 		Button btnExit = new Button("Tillbaka");
 		btnExit.setOnAction( e -> {

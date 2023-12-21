@@ -151,6 +151,7 @@ public class CompetitorStage {
 		Scene scene = new Scene(borderPane, 305, 450);
 		scene.getStylesheets().add("application/application.css");
 		stage.setScene(scene);
+		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
 
