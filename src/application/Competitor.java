@@ -1,5 +1,6 @@
 package application;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,25 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Competitor {
+public class Competitor implements Serializable{
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2214931996410813223L;
 	private String name;
-	private AtomicInteger partGoal = new AtomicInteger();
-	private AtomicInteger startNumber = new AtomicInteger();
+	private transient AtomicInteger partGoal = new AtomicInteger();
+	private transient AtomicInteger startNumber = new AtomicInteger();
 	private String skiTeam;
-	private LocalTime startTime; // Satt starttid, tex 10:00:00
-	private LocalTime lastPartTime; // sista deltid - starttid.
+	private transient LocalTime startTime; // Satt starttid, tex 10:00:00
+	private transient LocalTime lastPartTime; // sista deltid - starttid.
 	private LocalTime finnishTime; // Måltid efter loppet. (mätt utifrån vinnande åkare som har finnishTime 0)
-	private List<LocalTime> timesList = new ArrayList<>();
-	private String totalTime;
+	private transient List<LocalTime> timesList = new ArrayList<>();
+	private transient String totalTime;
 	
 	// Konstruktorer
 	public Competitor() {
 	}
-	public Competitor(String name, String skiTeam, List<LocalTime> timesList) {
+	public Competitor(String name, String skiTeam) {
 		this.name = name;
 		this.skiTeam = skiTeam;
-		this.timesList = timesList;
 	}
 	
 	// Metoder
@@ -168,7 +173,5 @@ public class Competitor {
 		return "    1    "+name+ "      "+startNumber+ "      "+returnTime;
 		
 	}
-	
-	
 	
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="20.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="application.Competitor" id="Competitor0">
+    <void property="finnishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:11.975855200</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Lasse Stefanz</string>
+    </void>
+    <void property="skiTeam">
+     <string>Det regnar å regnar SK</string>
+    </void>
+    <void property="startTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>11:02:41.588461100</string>
+     </object>
+    </void>
+    <void property="timesList">
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>11:02:53.564316300</string>
+      </object>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.Competitor" id="Competitor1">
+    <void property="finnishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:14.131652300</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Lemmy Kilmister</string>
+    </void>
+    <void property="skiTeam">
+     <string>Motörhead SK</string>
+    </void>
+    <void property="startTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>11:02:41.589462</string>
+     </object>
+    </void>
+    <void property="timesList">
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>11:02:55.721114300</string>
+      </object>
+     </void>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

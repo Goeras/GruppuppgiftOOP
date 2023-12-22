@@ -2,6 +2,8 @@ package application;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 public class CompetitorStage {
 	ShowTimesStage showTimesStage = new ShowTimesStage();
 	GamePlay gamePlay = new GamePlay();
+	CompetitorSerialization competitorSerialization = new CompetitorSerialization();
 
 	private Button startGame;
 	private Button setTime;
@@ -69,7 +72,7 @@ public class CompetitorStage {
 			showTime.setVisible(true);
 			startGame.setVisible(false);
 			}
-		}); // Lägger till en ebjektets startTime i sin tidslista.
+		}); // Lägger till objektets startTime i sin tidslista.
 
 		setTime = new Button("Logga delmål");
 		setTime.setVisible(false);
@@ -213,5 +216,16 @@ public class CompetitorStage {
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
     }
+    public void serialize() {
+    	List<Competitor> CompetitorList = new ArrayList<>();
+		CompetitorList.addAll(competitors);
+	    competitorSerialization.serialize(CompetitorList);
+    }
     
+    public void deserialize(){
+    	
+    	List<Competitor> competitorList = new ArrayList();
+    	competitorList = competitorSerialization.deserialize(competitorList);
+    	competitors.addAll(competitorList);
+    }
 }

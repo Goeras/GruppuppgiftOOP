@@ -1,8 +1,6 @@
 package application;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,8 +20,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		CompetitorStage competitorWindow = new CompetitorStage();
-		ObservableList<Competitor> competitors = FXCollections.observableArrayList();
+		competitorStage.deserialize();
 		Button btnAddCompetitor = new Button("Lägg till deltagare");
 		btnAddCompetitor.setOnAction(e -> {
 			competitorStage.AddCompetitorWindow();
@@ -37,7 +34,6 @@ public class Main extends Application{
 			try {
 				competitorStage.startCompetitorStage();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -47,12 +43,17 @@ public class Main extends Application{
 			btnCompetition.setVisible(true); // visar knappen för tävlingsfönster.
 			String choice = choiceBox.choiceBox();
 			competitorStage.setGamePlayStartType(choice);
-			// valbara alternativ: String startType = "Masstart", "Jaktstart", "Individuellstart"
-			//competitorStage.setGamePlayStartType(startType); // tänkbart problem: objektet är ej skapat förens i CompetitorStage klassen.
 		});
 		
+		Button btnQuit = new Button("Avsluta");
+		btnQuit.setOnAction( e -> {
+			competitorStage.serialize();
+			
+		primaryStage.close();
+	});
+		
 		VBox vBox = new VBox();
-		vBox.getChildren().addAll(btnAddCompetitor, btnContestType, btnCompetition);
+		vBox.getChildren().addAll(btnAddCompetitor, btnContestType, btnCompetition, btnQuit);
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10));
