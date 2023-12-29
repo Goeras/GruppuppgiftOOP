@@ -16,13 +16,13 @@
     </void>
     <void property="startTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>11:02:41.588461100</string>
+      <string>00:02:41.588461100</string>
      </object>
     </void>
     <void property="timesList">
      <void method="add">
       <object class="java.time.LocalTime" method="parse">
-       <string>11:02:53.564316300</string>
+       <string>00:02:53.564316300</string>
       </object>
      </void>
     </void>
@@ -43,13 +43,13 @@
     </void>
     <void property="startTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>11:02:41.589462</string>
+      <string>00:02:41.589462</string>
      </object>
     </void>
     <void property="timesList">
      <void method="add">
       <object class="java.time.LocalTime" method="parse">
-       <string>11:02:55.721114300</string>
+       <string>00:02:55.721114300</string>
       </object>
      </void>
     </void>
