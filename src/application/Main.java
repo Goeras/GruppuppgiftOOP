@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application{
-	
+
 	CompetitorStage competitorStage = new CompetitorStage();
 	BoxForChoice choiceBox = new BoxForChoice(); 
 
@@ -26,8 +26,12 @@ public class Main extends Application{
 			competitorStage.AddCompetitorWindow();
 		});
 
-		
-		
+		primaryStage.setOnCloseRequest( e -> {
+			e.consume();
+			competitorStage.serialize();
+			primaryStage.close();
+		});
+
 		Button btnCompetition = new Button("Tävlingsfönster");
 		btnCompetition.setVisible(false); // gömer knappen tills användare tryckt på knappen för starttyp.
 		btnCompetition.setOnAction(e -> {
@@ -37,31 +41,30 @@ public class Main extends Application{
 				e1.printStackTrace();
 			}
 		});
-		
+
 		Button btnContestType = new Button("Välj starttyp");
 		btnContestType.setOnAction( e -> {
 			btnCompetition.setVisible(true); // visar knappen för tävlingsfönster.
 			String choice = choiceBox.choiceBox();
 			competitorStage.setGamePlayStartType(choice);
 		});
-		
+
 		Button btnQuit = new Button("Avsluta");
 		btnQuit.setOnAction( e -> {
 			competitorStage.serialize();
-			
-		primaryStage.close();
-	});
-		
+			primaryStage.close();
+		});
+
 		VBox vBox = new VBox();
 		vBox.getChildren().addAll(btnAddCompetitor, btnContestType, btnCompetition, btnQuit);
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10));
-		
+
 		Scene scene = new Scene(vBox, 350, 400);
 		scene.getStylesheets().add("application/application.css");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
+
 }

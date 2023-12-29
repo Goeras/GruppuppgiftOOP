@@ -26,6 +26,7 @@ public class CompetitorSerialization {
 		}
 	}
 	
+	@SuppressWarnings("unchecked") // Objekten som läses in kommer alltid att vara av typen Competitor i detta program. Generisk metod som säkerställer objekttypen behövs därför inte.
 	public List<Competitor> deserialize(List<Competitor> competitorList){
 		try {
 			FileInputStream fileInputStream = new FileInputStream(new File("./competitors.xml"));
@@ -35,6 +36,7 @@ public class CompetitorSerialization {
 			fileInputStream.close();
 			
 		} catch (IOException e) {
+			System.out.println("File is not created yet.");
 			e.printStackTrace();
 		}
 		return competitorList;

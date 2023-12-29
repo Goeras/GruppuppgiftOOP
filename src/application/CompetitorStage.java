@@ -34,7 +34,7 @@ public class CompetitorStage {
 	private boolean gameStarted;
 	public ObservableList<Competitor> competitors = FXCollections.observableArrayList(); // Här skall Competitor-objekten läggas till efter skapande.
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") // Varningen gäller blandningen av datatyperna String och AtomicInteger i TableView table.
 	public void startCompetitorStage() throws Exception {
 		Stage stage =  new Stage();
 		stage.setTitle("Tour de Ski");
@@ -63,7 +63,6 @@ public class CompetitorStage {
 		startGame.setVisible(true);
 		startGame.setOnAction( e -> {
 			if (!gameStarted) {
-			//gamePlay.setStartType(startType);
 			gamePlay.setCompetitorList(competitors);
 			gamePlay.startTimers();
 			gamePlay.setObjektLastTime();
@@ -224,7 +223,7 @@ public class CompetitorStage {
     
     public void deserialize(){
     	
-    	List<Competitor> competitorList = new ArrayList();
+    	List<Competitor> competitorList = new ArrayList<>();
     	competitorList = competitorSerialization.deserialize(competitorList);
     	competitors.addAll(competitorList);
     }

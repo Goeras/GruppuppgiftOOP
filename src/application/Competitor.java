@@ -44,7 +44,7 @@ public class Competitor implements Serializable{
 	    long seconds = duration.toSecondsPart();
 	    long nanos = duration.toNanosPart();
 
-	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanos); // skapar en LocalTime av tidigare värden ur int-parametrar.
+	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanos); // skapar en LocalTime av tidigare värden ur int-parametrar. Castar från long till int.
 
 	    return diffTime;
 	}
@@ -82,15 +82,15 @@ public class Competitor implements Serializable{
 		LocalTime startTime = timesList.get(0); // hämtar första tiden i Listan
 	    LocalTime lastTime = timesList.get(timesList.size() - 1); // hämtar sista tiden i Listan
 
-	    long nanosDiff = ChronoUnit.NANOS.between(startTime, lastTime); // räknar ut diff mellan första och sista tiden
-	    long hours = nanosDiff / 3_600_000_000_000L;
-	    nanosDiff %= 3_600_000_000_000L;
-	    long minutes = nanosDiff / 60_000_000_000L;
-	    nanosDiff %= 60_000_000_000L;
-	    long seconds = nanosDiff / 1_000_000_000L;
-	    nanosDiff %= 1_000_000_000L;
+	    long nanosDiff = ChronoUnit.NANOS.between(startTime, lastTime); // räknar ut diff mellan första och sista tiden i nanosekunder.
+	    long hours = nanosDiff / 3_600_000_000_000L; // Räknar ut antalet timmat utifrån "nanosDiff".
+	    nanosDiff %= 3_600_000_000_000L; // Uppaterar "nanosDiff" med resterande antalet nanosekunder efter att timmarna dragits bort.
+	    long minutes = nanosDiff / 60_000_000_000L; // Räknar ut antalet minuter utifrån "nanosDiff".
+	    nanosDiff %= 60_000_000_000L; // Uppdaterar "nanosDiff" - minutes.
+	    long seconds = nanosDiff / 1_000_000_000L; // Räknar ut antalet minuter utifrån "nanosDiff".
+	    nanosDiff %= 1_000_000_000L; // Uppdaterar "nanosDiff" - seconds.
 
-	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanosDiff); // Sätter ihop en LocalTime från ovanstående variabel-värden
+	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanosDiff); // Sätter ihop en LocalTime från ovanstående variabel-värden, castar från long till int.
 		this.lastPartTime = diffTime;
 	}
 	
