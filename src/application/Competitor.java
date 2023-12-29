@@ -11,22 +11,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Competitor implements Serializable{
 
+	// Pga av problem vid serialisering då även flera av nedanstående transient attribut följde med till XML så sker det nu med DTO-objekt istället.
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2214931996410813223L;
+	private static final long serialVersionUID = 214931996410813223L;
 	private String name;
+	private String skiTeam;
+	private LocalTime finishTime; // Måltid efter loppet. (mätt utifrån vinnande åkare som har finishTime 0)
 	private transient AtomicInteger partGoal = new AtomicInteger();
 	private transient AtomicInteger startNumber = new AtomicInteger();
-	private String skiTeam;
 	private transient LocalTime startTime; // Satt starttid, tex 10:00:00
 	private transient LocalTime lastPartTime; // sista deltid - starttid.
-	private LocalTime finnishTime; // Måltid efter loppet. (mätt utifrån vinnande åkare som har finnishTime 0)
 	private transient List<LocalTime> timesList = new ArrayList<>();
-	private transient String totalTime;
 	private transient boolean finished = false; // Boolean för att se om åkaren gått i mål.
 	private transient LocalTime timeAfterWinner; // Skillnaden mellan målgångtiden mellan winnaren och detta objekt
+	private transient boolean winner = false;
 	
 	// Konstruktorer
 	public Competitor() {
@@ -39,14 +37,15 @@ public class Competitor implements Serializable{
 	// Metoder
 	public LocalTime durationBetweenTwoLocalTimes(LocalTime a, LocalTime b) {
 	    
-	    Duration duration = Duration.between(a, b); // jämför skillnaden
+	    Duration duration = Duration.between(a, b); // jämför skillnaden mellan två LocalTime's.
 
 	    long hours = duration.toHours(); // Delar upp skillnaden i timmar, minuter, sekunder och nano.
 	    long minutes = duration.toMinutesPart();
 	    long seconds = duration.toSecondsPart();
 	    long nanos = duration.toNanosPart();
 
-	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanos); // skapar en LocalTime av tidigare värden ur int-parametrar. Castar från long till int.
+	 // skapar en LocalTime av tidigare värden. Castar från long till int.
+	    LocalTime diffTime = LocalTime.of((int) hours, (int) minutes, (int) seconds, (int) nanos);
 
 	    return diffTime;
 	}
@@ -121,11 +120,11 @@ public class Competitor implements Serializable{
 		timesList.add(startTime);
 		this.startTime = startTime;
 	}
-	public LocalTime getFinnishTime() {
-		return finnishTime;
+	public LocalTime getFinishTime() {
+		return finishTime;
 	}
-	public void setFinnishTime(LocalTime finnishTime) {
-		this.finnishTime = finnishTime;
+	public void setFinishTime(LocalTime finishTime) {
+		this.finishTime = finishTime;
 	}
 	public AtomicInteger getStartNumber() {
 		return startNumber;
@@ -152,13 +151,7 @@ public class Competitor implements Serializable{
 	public void addTime(LocalTime time){
 		this.timesList.add(time);
 	}
-	public String getTotalTime() {
-		return totalTime;
-	}
-	public void setTotalTime(String totalTime) {
-		
-		this.totalTime = totalTime;
-	}
+	
 	public boolean isFinished() {
 		return finished;
 	}
@@ -170,6 +163,12 @@ public class Competitor implements Serializable{
 	}
 	public void setTimeAfterWinner(LocalTime timeAfterWinner) {
 		this.timeAfterWinner = timeAfterWinner;
+	}
+	public boolean isWinner() {
+		return winner;
+	}
+	public void setWinner(boolean winner) {
+		this.winner = winner;
 	}
 	@Override
 	public String toString() { // Behöver sorteras efter ledare med position, samt tiden mellan start och senast registrerade (sista i listan)

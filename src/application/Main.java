@@ -28,7 +28,7 @@ public class Main extends Application{
 
 		primaryStage.setOnCloseRequest( e -> {
 			e.consume();
-			competitorStage.setAllCompetitorsFinishedToFalse();
+			competitorStage.resetCompetitorAttributes();
 			competitorStage.serialize();
 			primaryStage.close();
 		});
@@ -52,7 +52,7 @@ public class Main extends Application{
 
 		Button btnQuit = new Button("Avsluta");
 		btnQuit.setOnAction( e -> {
-			competitorStage.setAllCompetitorsFinishedToFalse();
+			competitorStage.resetCompetitorAttributes();
 			competitorStage.serialize();
 			primaryStage.close();
 		});

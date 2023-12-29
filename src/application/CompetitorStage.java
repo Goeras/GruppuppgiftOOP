@@ -35,6 +35,7 @@ public class CompetitorStage {
 	private Button goBack;
 	private Competitor choice;
 	private boolean gameStarted;
+	private boolean winner = false;
 	public ObservableList<Competitor> competitors = FXCollections.observableArrayList(); // Här skall Competitor-objekten läggas till efter skapande.
 
 	@SuppressWarnings("unchecked") // Varningen gäller blandningen av datatyperna String och AtomicInteger i TableView table.
@@ -48,12 +49,10 @@ public class CompetitorStage {
 		Competitor c1 = new Competitor();
 		c1.setName("Markus Göras");
 		c1.setSkiTeam("Falu SK");
-		c1.setTotalTime("01:45:25");
 		competitors.add(c1);
 		Competitor c2 = new Competitor();
 		c2.setName("Hasse Alfredsson");
 		c2.setSkiTeam("Malmö SK");
-		c2.setTotalTime("00:32:48");
 		competitors.add(c2);
 		}
 
@@ -92,9 +91,13 @@ public class CompetitorStage {
 		setFinishTime.setOnAction( e -> {
 			if(gameStarted) {
 				if(choice != null) {
+					if (!winner) {
+						choice.setWinner(true);
+						winner = true;
+					}
 					gamePlay.addTimeStamp(choice);
 					choice.setFinished(true);
-					choice.setFinnishTime(LocalTime.now());
+					choice.setFinishTime(LocalTime.now());
 					showFinishTimes.setVisible(true);
 				}
 			}
@@ -120,7 +123,7 @@ public class CompetitorStage {
 		goBack = new Button();
 		goBack.setText("Tillbaka");
 		goBack.setOnAction( e -> {
-			gamePlay.setFinnishTimes();
+			gamePlay.setFinishTimes();
 			gameStarted = false;
 			stage.close();
 		});
@@ -139,12 +142,12 @@ public class CompetitorStage {
 		teamColumn.setCellValueFactory(new PropertyValueFactory<>("skiTeam")); // Attributet att leta efter (letar efter getter)
 
 		// Startnumber column
-		TableColumn<Competitor, AtomicInteger> finnishTimeColumn = new TableColumn<>("Senaste tävling");
-		finnishTimeColumn.setMinWidth(100);
-		finnishTimeColumn.setCellValueFactory(new PropertyValueFactory<>("finnishTime"));
+		TableColumn<Competitor, AtomicInteger> finishTimeColumn = new TableColumn<>("Senaste tävling");
+		finishTimeColumn.setMinWidth(100);
+		finishTimeColumn.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
 
 		table.setItems(competitors);
-		table.getColumns().addAll(nameColumn, teamColumn, finnishTimeColumn);
+		table.getColumns().addAll(nameColumn, teamColumn, finishTimeColumn);
 		table.setOnMouseClicked( e -> { // sätter choice till det klickade objectet i tableview..
 			if(e.getClickCount() == 1) {
 				choice = table.getSelectionModel().getSelectedItem();
@@ -163,14 +166,13 @@ public class CompetitorStage {
 		vBoxButtons.getChildren().addAll(startGame, setTime, setFinishTime, showTime, showFinishTimes, goBack);
 
 		BorderPane borderPane = new BorderPane();
-		//borderPane.setStyle("-fx-background-color: #f0ed37;");
 		borderPane.setTop(vBoxLabel);
 		borderPane.setCenter(table);
 		borderPane.setBottom(vBoxButtons);
 		
 		// "Avsluta tävling" aktiveras när man kryssar ner fönstret
         stage.setOnCloseRequest(event -> {
-        	gamePlay.setFinnishTimes();
+        	gamePlay.setFinishTimes();
             gameStarted = false;
             stage.close();
         });
@@ -240,19 +242,18 @@ public class CompetitorStage {
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
     }
+ // Konverterar Competitor-objekten till DTO. (Data Transfer Object), och anropar metod för att skriva till XML.
     public void serialize() {
-    	List<Competitor> CompetitorList = new ArrayList<>();
-		CompetitorList.addAll(competitors);
-	    competitorSerialization.serialize(CompetitorList);
+        List<CompetitorDTO> competitorDTOList = CompetitorConverter.listToDTO(competitors);
+        competitorSerialization.serialize(competitorDTOList);
     }
-    
-    public void deserialize(){
-    	
-    	List<Competitor> competitorList = new ArrayList<>();
-    	competitorList = competitorSerialization.deserialize(competitorList);
-    	competitors.addAll(competitorList);
+
+ // Anropar metod för att läsa in DTO-objekten, konverterar sedan om till Competitor-objekt igen och lägger in i listan över deltagare.
+    public void deserialize() {
+        List<CompetitorDTO> competitorDTOList = competitorSerialization.deserialize(new ArrayList<>()); 
+        competitors.setAll(CompetitorConverter.listFromDTO(competitorDTOList));
     }
-    public void setAllCompetitorsFinishedToFalse() {
+    public void resetCompetitorAttributes() {
     	for (Competitor c : competitors) {
     		c.setFinished(false);
     	}
