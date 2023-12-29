@@ -21,7 +21,6 @@ public class CompetitorConverter {
         competitor.setName(dto.getName());
         competitor.setSkiTeam(dto.getSkiTeam());
         competitor.setFinishTime(dto.getFinishTime());
-        // Kopiera över andra attribut som behövs
         return competitor;
     }
     
