@@ -5,7 +5,7 @@
    <object class="application.Competitor" id="Competitor0">
     <void property="finnishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:11.975855200</string>
+      <string>13:01:19.889242200</string>
      </object>
     </void>
     <void property="name">
@@ -15,14 +15,112 @@
      <string>Det regnar å regnar SK</string>
     </void>
     <void property="startTime">
+     <object class="java.time.LocalTime" id="LocalTime0" method="parse">
+      <string>13:04:01.477703300</string>
+     </object>
+    </void>
+    <void property="timeAfterWinner">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:02:41.588461100</string>
+      <string>00:00</string>
      </object>
     </void>
     <void property="timesList">
+     <void index="0">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:02:41.588461100</string>
+      </object>
+     </void>
      <void method="add">
       <object class="java.time.LocalTime" method="parse">
        <string>00:02:53.564316300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:35:27.475581100</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:35:33.203168400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:40:33.579768400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:40:35.560410</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:43:27.820254400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:43:32.888956500</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:44:43.786236400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:44:49.883992800</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:45:03.675676400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:55:57.133298300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:56:09.264768900</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:56:13.571083300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:00:57.164238900</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:00:59.911805300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object idref="LocalTime0"/>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:04:05.066263400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:04:11.320193100</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:04:18.427246600</string>
       </object>
      </void>
     </void>
@@ -32,7 +130,7 @@
    <object class="application.Competitor" id="Competitor1">
     <void property="finnishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:14.131652300</string>
+      <string>13:01:19.890546100</string>
      </object>
     </void>
     <void property="name">
@@ -42,14 +140,102 @@
      <string>Motörhead SK</string>
     </void>
     <void property="startTime">
+     <object class="java.time.LocalTime" id="LocalTime1" method="parse">
+      <string>13:04:01.480008100</string>
+     </object>
+    </void>
+    <void property="timeAfterWinner">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:02:41.589462</string>
+      <string>00:00:11.530746200</string>
      </object>
     </void>
     <void property="timesList">
+     <void index="0">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:02:41.589462</string>
+      </object>
+     </void>
      <void method="add">
       <object class="java.time.LocalTime" method="parse">
        <string>00:02:55.721114300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:35:27.477579900</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:35:51.603438400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:40:33.581769400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:43:27.821255400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:43:35.561441500</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:44:43.786236400</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:44:52.751533800</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>00:44:58.771318700</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:55:53.129546700</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:56:03.234357200</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>12:56:15.991487100</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:00:57.167247300</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:01:02.459327</string>
+      </object>
+     </void>
+     <void method="add">
+      <object idref="LocalTime1"/>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:04:08.020830900</string>
+      </object>
+     </void>
+     <void method="add">
+      <object class="java.time.LocalTime" method="parse">
+       <string>13:04:29.957992800</string>
       </object>
      </void>
     </void>

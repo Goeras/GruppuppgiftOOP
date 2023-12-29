@@ -25,10 +25,13 @@ public class CompetitorStage {
 	ShowTimesStage showTimesStage = new ShowTimesStage();
 	GamePlay gamePlay = new GamePlay();
 	CompetitorSerialization competitorSerialization = new CompetitorSerialization();
+	ShowFinishTimesStage showFinishTimesStage = new ShowFinishTimesStage();
 
 	private Button startGame;
 	private Button setTime;
+	private Button setFinishTime;
 	private Button showTime;
+	private Button showFinishTimes;
 	private Button goBack;
 	private Competitor choice;
 	private boolean gameStarted;
@@ -69,6 +72,7 @@ public class CompetitorStage {
 			gameStarted = true;
 			setTime.setVisible(true);
 			showTime.setVisible(true);
+			setFinishTime.setVisible(true);
 			startGame.setVisible(false);
 			}
 		}); // Lägger till objektets startTime i sin tidslista.
@@ -82,6 +86,19 @@ public class CompetitorStage {
 				}
 			}
 		});
+		
+		setFinishTime = new Button("Logga Målgång");
+		setFinishTime.setVisible(false);
+		setFinishTime.setOnAction( e -> {
+			if(gameStarted) {
+				if(choice != null) {
+					gamePlay.addTimeStamp(choice);
+					choice.setFinished(true);
+					choice.setFinnishTime(LocalTime.now());
+					showFinishTimes.setVisible(true);
+				}
+			}
+		});
 
 		showTime = new Button("Visa senaste tid");
 		showTime.setVisible(false);
@@ -89,6 +106,14 @@ public class CompetitorStage {
 			if(gameStarted) {
 			gamePlay.setObjektLastTime();
 			showTimesStage.displayTimes(competitors);
+			}
+		});
+		
+		showFinishTimes = new Button("Visa Målgångstider");
+		showFinishTimes.setVisible(false);
+		showFinishTimes.setOnAction( e -> {
+			if(gameStarted) {
+			showFinishTimesStage.displayFinishTimes(competitors);
 			}
 		});
 
@@ -135,7 +160,7 @@ public class CompetitorStage {
 		vBoxButtons.setAlignment(Pos.CENTER);
 		vBoxButtons.setSpacing(10);
 		vBoxButtons.setPadding(new Insets(10, 10, 10, 10));
-		vBoxButtons.getChildren().addAll(startGame, setTime, showTime, goBack);
+		vBoxButtons.getChildren().addAll(startGame, setTime, setFinishTime, showTime, showFinishTimes, goBack);
 
 		BorderPane borderPane = new BorderPane();
 		//borderPane.setStyle("-fx-background-color: #f0ed37;");
@@ -226,5 +251,10 @@ public class CompetitorStage {
     	List<Competitor> competitorList = new ArrayList<>();
     	competitorList = competitorSerialization.deserialize(competitorList);
     	competitors.addAll(competitorList);
+    }
+    public void setAllCompetitorsFinishedToFalse() {
+    	for (Competitor c : competitors) {
+    		c.setFinished(false);
+    	}
     }
 }

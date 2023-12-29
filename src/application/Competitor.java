@@ -25,6 +25,8 @@ public class Competitor implements Serializable{
 	private LocalTime finnishTime; // Måltid efter loppet. (mätt utifrån vinnande åkare som har finnishTime 0)
 	private transient List<LocalTime> timesList = new ArrayList<>();
 	private transient String totalTime;
+	private transient boolean finished = false; // Boolean för att se om åkaren gått i mål.
+	private transient LocalTime timeAfterWinner; // Skillnaden mellan målgångtiden mellan winnaren och detta objekt
 	
 	// Konstruktorer
 	public Competitor() {
@@ -156,6 +158,18 @@ public class Competitor implements Serializable{
 	public void setTotalTime(String totalTime) {
 		
 		this.totalTime = totalTime;
+	}
+	public boolean isFinished() {
+		return finished;
+	}
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+	public LocalTime getTimeAfterWinner() {
+		return timeAfterWinner;
+	}
+	public void setTimeAfterWinner(LocalTime timeAfterWinner) {
+		this.timeAfterWinner = timeAfterWinner;
 	}
 	@Override
 	public String toString() { // Behöver sorteras efter ledare med position, samt tiden mellan start och senast registrerade (sista i listan)
