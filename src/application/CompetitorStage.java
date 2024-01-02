@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -179,7 +180,7 @@ public class CompetitorStage {
 		gamePlay.setStartType(startType);
 	}
 	
-    public void AddCompetitorWindow() {
+    public void addCompetitorWindow() {
         Stage newStage = new Stage();
         VBox newRoot = new VBox(10);
         TextField nameTextField = new TextField();
@@ -216,6 +217,52 @@ public class CompetitorStage {
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
     }
+    
+    public void removeCompetitorWindow() {
+    	   Stage removeStage = new Stage();
+           VBox removeRoot = new VBox(10);
+           Button removeBtn = new Button("Remove Competitor");
+
+           // Create a ChoiceBox to select the competitor to remove
+           ChoiceBox<String> competitorChoiceBox = new ChoiceBox<>();
+           updateChoiceBox(competitorChoiceBox);
+
+           removeBtn.setOnAction(e -> {
+               // Remove the selected competitor
+               String selectedCompetitor = competitorChoiceBox.getValue();
+               removeCompetitor(selectedCompetitor);
+
+               // Update the ChoiceBox with the latest competitors
+               updateChoiceBox(competitorChoiceBox);
+
+               removeStage.close();
+           });
+
+           removeRoot.getChildren().addAll(competitorChoiceBox, removeBtn);
+           Scene removeScene = new Scene(removeRoot, 300, 200);
+           removeScene.getStylesheets().add("application/application.css");
+           removeStage.setScene(removeScene);
+           removeStage.setTitle("Remove Competitor Window");
+           removeStage.initModality(Modality.APPLICATION_MODAL);
+           removeStage.show();
+    }
+    
+    private void removeCompetitor(String competitorName) {
+        if (!competitors.isEmpty()) {
+            // Remove the selected competitor from the list
+            competitors.removeIf(competitor -> competitor.getName().equals(competitorName));
+        }
+    }
+    
+    private void updateChoiceBox(ChoiceBox<String> choiceBox) {
+        // Update the ChoiceBox with the latest list of competitors
+        choiceBox.getItems().clear();
+        for (Competitor competitor : competitors) {
+            choiceBox.getItems().add(competitor.getName());
+        }
+        choiceBox.setValue(null); // Clear the selection
+    }
+    
     public void serialize() {
     	List<Competitor> CompetitorList = new ArrayList<>();
 		CompetitorList.addAll(competitors);
