@@ -26,33 +26,28 @@ public class CompetitorStage {
 	ShowTimesStage showTimesStage = new ShowTimesStage();
 	GamePlay gamePlay = new GamePlay();
 	CompetitorSerialization competitorSerialization = new CompetitorSerialization();
+	ShowFinishTimesStage showFinishTimesStage = new ShowFinishTimesStage();
 
 	private Button startGame;
 	private Button setTime;
+	private Button setFinishTime;
 	private Button showTime;
+	private Button showFinishTimes;
 	private Button goBack;
 	private Competitor choice;
 	private boolean gameStarted;
-	public ObservableList<Competitor> competitors = FXCollections.observableArrayList(); // Här skall Competitor-objekten läggas till efter skapande.
+	private boolean winner = false;
+	public ObservableList<Competitor> competitors = FXCollections.observableArrayList();
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") // Varningen gäller blandningen av datatyperna String och AtomicInteger i TableView table.
 	public void startCompetitorStage() throws Exception {
 		Stage stage =  new Stage();
 		stage.setTitle("Tour de Ski");
 		stage.initModality(Modality.APPLICATION_MODAL);
 
-		// För testningens skull..
+		// Dummie-åkare skapas om användaren ej lagt till egna åkare.
 		if (competitors.isEmpty()){
-		Competitor c1 = new Competitor();
-		c1.setName("Markus Göras");
-		c1.setSkiTeam("Falu SK");
-		c1.setTotalTime("01:45:25");
-		competitors.add(c1);
-		Competitor c2 = new Competitor();
-		c2.setName("Hasse Alfredsson");
-		c2.setSkiTeam("Malmö SK");
-		c2.setTotalTime("00:32:48");
-		competitors.add(c2);
+		addBotCompetitors();
 		}
 
 		// Label
@@ -64,16 +59,16 @@ public class CompetitorStage {
 		startGame.setVisible(true);
 		startGame.setOnAction( e -> {
 			if (!gameStarted) {
-			//gamePlay.setStartType(startType);
 			gamePlay.setCompetitorList(competitors);
 			gamePlay.startTimers();
 			gamePlay.setObjektLastTime();
 			gameStarted = true;
 			setTime.setVisible(true);
 			showTime.setVisible(true);
+			setFinishTime.setVisible(true);
 			startGame.setVisible(false);
 			}
-		}); // Lägger till objektets startTime i sin tidslista.
+		}); 
 
 		setTime = new Button("Logga delmål");
 		setTime.setVisible(false);
@@ -81,6 +76,23 @@ public class CompetitorStage {
 			if(gameStarted) {
 				if(choice != null) {
 					gamePlay.addTimeStamp(choice);
+				}
+			}
+		});
+		
+		setFinishTime = new Button("Logga Målgång");
+		setFinishTime.setVisible(false);
+		setFinishTime.setOnAction( e -> {
+			if(gameStarted) {
+				if(choice != null) {
+					if (!winner) {
+						choice.setWinner(true);
+						winner = true;
+					}
+					gamePlay.addTimeStamp(choice);
+					choice.setFinished(true);
+					choice.setFinishTime(LocalTime.now());
+					showFinishTimes.setVisible(true);
 				}
 			}
 		});
@@ -93,11 +105,19 @@ public class CompetitorStage {
 			showTimesStage.displayTimes(competitors);
 			}
 		});
+		
+		showFinishTimes = new Button("Visa Målgångstider");
+		showFinishTimes.setVisible(false);
+		showFinishTimes.setOnAction( e -> {
+			if(gameStarted) {
+			showFinishTimesStage.displayFinishTimes(competitors);
+			}
+		});
 
 		goBack = new Button();
 		goBack.setText("Tillbaka");
 		goBack.setOnAction( e -> {
-			gamePlay.setFinnishTimes();
+			gamePlay.setFinishTimes();
 			gameStarted = false;
 			stage.close();
 		});
@@ -116,12 +136,12 @@ public class CompetitorStage {
 		teamColumn.setCellValueFactory(new PropertyValueFactory<>("skiTeam")); // Attributet att leta efter (letar efter getter)
 
 		// Startnumber column
-		TableColumn<Competitor, AtomicInteger> finnishTimeColumn = new TableColumn<>("Senaste tävling");
-		finnishTimeColumn.setMinWidth(100);
-		finnishTimeColumn.setCellValueFactory(new PropertyValueFactory<>("finnishTime"));
+		TableColumn<Competitor, AtomicInteger> finishTimeColumn = new TableColumn<>("Senaste tävling");
+		finishTimeColumn.setMinWidth(100);
+		finishTimeColumn.setCellValueFactory(new PropertyValueFactory<>("finishTime"));
 
 		table.setItems(competitors);
-		table.getColumns().addAll(nameColumn, teamColumn, finnishTimeColumn);
+		table.getColumns().addAll(nameColumn, teamColumn, finishTimeColumn);
 		table.setOnMouseClicked( e -> { // sätter choice till det klickade objectet i tableview..
 			if(e.getClickCount() == 1) {
 				choice = table.getSelectionModel().getSelectedItem();
@@ -137,17 +157,16 @@ public class CompetitorStage {
 		vBoxButtons.setAlignment(Pos.CENTER);
 		vBoxButtons.setSpacing(10);
 		vBoxButtons.setPadding(new Insets(10, 10, 10, 10));
-		vBoxButtons.getChildren().addAll(startGame, setTime, showTime, goBack);
+		vBoxButtons.getChildren().addAll(startGame, setTime, setFinishTime, showTime, showFinishTimes, goBack);
 
 		BorderPane borderPane = new BorderPane();
-		//borderPane.setStyle("-fx-background-color: #f0ed37;");
 		borderPane.setTop(vBoxLabel);
 		borderPane.setCenter(table);
 		borderPane.setBottom(vBoxButtons);
 		
 		// "Avsluta tävling" aktiveras när man kryssar ner fönstret
         stage.setOnCloseRequest(event -> {
-        	gamePlay.setFinnishTimes();
+        	gamePlay.setFinishTimes();
             gameStarted = false;
             stage.close();
         });
@@ -263,16 +282,45 @@ public class CompetitorStage {
         choiceBox.setValue(null); // Clear the selection
     }
     
+ // Konverterar Competitor-objekten till DTO. (Data Transfer Object), och anropar metod för att skriva till XML.
     public void serialize() {
-    	List<Competitor> CompetitorList = new ArrayList<>();
-		CompetitorList.addAll(competitors);
-	    competitorSerialization.serialize(CompetitorList);
+        List<CompetitorDTO> competitorDTOList = CompetitorConverter.listToDTO(competitors);
+        competitorSerialization.serialize(competitorDTOList);
+    }
+
+ // Anropar metod för att läsa in DTO-objekten, konverterar sedan om till Competitor-objekt igen och lägger in i listan över deltagare.
+    public void deserialize() {
+        List<CompetitorDTO> competitorDTOList = competitorSerialization.deserialize(new ArrayList<>()); 
+        competitors.setAll(CompetitorConverter.listFromDTO(competitorDTOList));
+    }
+    public void resetCompetitorAttributes() {
+    	for (Competitor c : competitors) {
+    		c.setFinished(false);
+    	}
     }
     
-    public void deserialize(){
-    	
-    	List<Competitor> competitorList = new ArrayList();
-    	competitorList = competitorSerialization.deserialize(competitorList);
-    	competitors.addAll(competitorList);
+    public void addBotCompetitors()
+    {
+    	Competitor c1 = new Competitor();
+		c1.setName("Evert Ljusberg");
+		c1.setSkiTeam("Östersund SK");
+		
+		Competitor c2 = new Competitor();
+		c2.setName("Hasse Alfredsson");
+		c2.setSkiTeam("Malmö SK");
+		
+		Competitor c3 = new Competitor();
+		c3.setName("Thorsten Flinck");
+		c3.setSkiTeam("Solna SK");
+		
+		Competitor c4 = new Competitor();
+		c4.setName("Kenta Gustafsson");
+		c4.setSkiTeam("Nacka SK");
+		
+		Competitor c5 = new Competitor();
+		c5.setName("Karl Moraeus");
+		c5.setSkiTeam("Orsa SK");
+		
+		competitors.addAll(c1,c2,c3,c4,c5);
     }
 }

@@ -9,9 +9,7 @@ import java.util.List;
 public class GamePlay {
 
 	// Attribut
-	String startTime; // Huvudsaklig starttid. (masstart eller första startande)
-	String startType; // "Massstart" / "Jaktstart" / "Individuellstart". sätts av användaren.
-	int diffTime = 0;
+	String startType; // "Massstart" / "Jaktstart (15/30)" / "Individuellstart". sätts av användaren.
 	List<Competitor> competitorList = new ArrayList<>(); // Lista över deltagare - Competitor
 	
 	// Konstruktorer
@@ -23,11 +21,11 @@ public class GamePlay {
 	}
 	
 	// Metoder
-	public void setFinnishTimes() // Sätter sluttiden från senaste Tid i objektets lista.
+	public void setFinishTimes() // Sätter sluttiden från senaste Tid i objektets lista.
 	{
 		for(Competitor c : competitorList)
 		{
-			c.setFinnishTime(c.getLastPartTime());
+			c.setFinishTime(c.getLastPartTime());
 		}
 	}
 	
@@ -41,8 +39,6 @@ public class GamePlay {
 				c.setStartNumber(startNumber);
 				startNumber++;
 				c.setStartTime(LocalTime.now());
-				//c.addTime(c.getStartTime()); // Lägger till objektets starttid i objektets timesList.
-				//c.addTimeStamp(); // lägger till en LocalTime.now() för varje objekt.
 			}
 		}
 		else if(startType.equals("Jaktstart 15sek")) // Start med 30 sekunders mellanrum.
@@ -69,19 +65,19 @@ public class GamePlay {
 				plusTime = plusTime.plusSeconds(30); // Lägger till 30 sekunder på starttiden för varje åkare.
 			}
 		}
-		else if(startType.equals("Individuellstart")) // Start baserat på tidigare finnishTime.
+		else if(startType.equals("Individuellstart")) // Start baserat på tidigare finishTime.
 		{
-			List<Competitor> sortedByFinnishTime = new ArrayList<>();
-			sortedByFinnishTime.addAll(competitorList); // kopia på listan över tävlande so skall sorteras efter senaste åktid.
+			List<Competitor> sortedByFinishTime = new ArrayList<>();
+			sortedByFinishTime.addAll(competitorList); // kopia på listan över tävlande so skall sorteras efter senaste åktid.
 			
-			Comparator <Competitor> nameComparator = (c1, c2) -> c1.getFinnishTime().compareTo(c2.getFinnishTime()); // Comparator för att jämföra ebjektens finnishTime
-			Collections.sort(sortedByFinnishTime, nameComparator); // sorterad efter finnishTime
+			Comparator <Competitor> nameComparator = (c1, c2) -> c1.getFinishTime().compareTo(c2.getFinishTime()); // Comparator för att jämföra ebjektens finishTime
+			Collections.sort(sortedByFinishTime, nameComparator); // sorterad efter finishTime
 			
-			Competitor lastWinner = sortedByFinnishTime.get(0); // Vinnaren från förra tävlingen.
-			for(Competitor c : sortedByFinnishTime)
+			Competitor lastWinner = sortedByFinishTime.get(0); // Vinnaren från förra tävlingen.
+			for(Competitor c : sortedByFinishTime)
 			{
-				LocalTime newStartTime = LocalTime.now(); // Första starttid = NU. Andra starttid = NU+åkarens finnishTime mellanskillnad mot vinnaren.
-				LocalTime timeToAddLocalTime = c.durationBetweenTwoLocalTimes(lastWinner.getFinnishTime(), c.getFinnishTime()); // lägger till mellanskillnad
+				LocalTime newStartTime = LocalTime.now(); // Första starttid = NU. Andra starttid = NU+åkarens finishTime mellanskillnad mot vinnaren.
+				LocalTime timeToAddLocalTime = c.durationBetweenTwoLocalTimes(lastWinner.getFinishTime(), c.getFinishTime()); // lägger till mellanskillnad
 				
 				//Duration timeToAddDuration = Duration.between(LocalTime.MIDNIGHT, timeToAddLocalTime); // gör om en LocalTime till en Duration då man inte kan plussa en LocalTime med en annan LocalTime.
 				

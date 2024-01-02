@@ -2,56 +2,77 @@
 <java version="21" class="java.beans.XMLDecoder">
  <object class="java.util.ArrayList">
   <void method="add">
-   <object class="application.Competitor" id="Competitor0">
-    <void property="finnishTime">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:11.975855200</string>
+      <string>00:00:07.974574600</string>
      </object>
     </void>
     <void property="name">
-     <string>Lasse Stefanz</string>
+     <string>Evert Ljusberg</string>
     </void>
     <void property="skiTeam">
-     <string>Det regnar å regnar SK</string>
-    </void>
-    <void property="startTime">
-     <object class="java.time.LocalTime" method="parse">
-      <string>11:02:41.588461100</string>
-     </object>
-    </void>
-    <void property="timesList">
-     <void method="add">
-      <object class="java.time.LocalTime" method="parse">
-       <string>11:02:53.564316300</string>
-      </object>
-     </void>
+     <string>Östersund SK</string>
     </void>
    </object>
   </void>
   <void method="add">
-   <object class="application.Competitor" id="Competitor1">
-    <void property="finnishTime">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:14.131652300</string>
+      <string>00:00:10.287460300</string>
      </object>
     </void>
     <void property="name">
-     <string>Lemmy Kilmister</string>
+     <string>Hasse Alfredsson</string>
     </void>
     <void property="skiTeam">
-     <string>Motörhead SK</string>
+     <string>Malmö SK</string>
     </void>
-    <void property="startTime">
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>11:02:41.589462</string>
+      <string>00:00:12.246366700</string>
      </object>
     </void>
-    <void property="timesList">
-     <void method="add">
-      <object class="java.time.LocalTime" method="parse">
-       <string>11:02:55.721114300</string>
-      </object>
-     </void>
+    <void property="name">
+     <string>Thorsten Flinck</string>
+    </void>
+    <void property="skiTeam">
+     <string>Solna SK</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:13.985688100</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Kenta Gustafsson</string>
+    </void>
+    <void property="skiTeam">
+     <string>Nacka SK</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:15.624064600</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Karl Moraeus</string>
+    </void>
+    <void property="skiTeam">
+     <string>Orsa SK</string>
     </void>
    </object>
   </void>

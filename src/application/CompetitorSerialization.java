@@ -11,13 +11,14 @@ import java.util.List;
 
 public class CompetitorSerialization {
 
-	public void serialize(List<Competitor> competitorList) {
+	// Skriver DTO-objekten till XML.
+	public void serialize(List<CompetitorDTO> competitorDTOList) {
 		try {
 			FileOutputStream fileOutputStream;
 			fileOutputStream = new FileOutputStream(new File("./competitors.xml"));
 			XMLEncoder xmlEncoder = new XMLEncoder(fileOutputStream);
 			xmlEncoder.setPersistenceDelegate(LocalTime.class, new LocalTimePersistenceDelegate());
-			xmlEncoder.writeObject(competitorList);
+			xmlEncoder.writeObject(competitorDTOList);
 			xmlEncoder.close();
 			fileOutputStream.close();
 			
@@ -26,15 +27,18 @@ public class CompetitorSerialization {
 		}
 	}
 	
-	public List<Competitor> deserialize(List<Competitor> competitorList){
+	// Läser in DTO-objekten från XML och returnerar dem i en List.
+	@SuppressWarnings("unchecked") // Objekten som läses in kommer alltid att vara av typen Competitor i detta program. Generisk metod som säkerställer objekttypen behövs därför inte.
+	public List<CompetitorDTO> deserialize(List<CompetitorDTO> competitorList){
 		try {
 			FileInputStream fileInputStream = new FileInputStream(new File("./competitors.xml"));
 			XMLDecoder xmlDecoder = new XMLDecoder(fileInputStream);
-			competitorList = (List<Competitor>)xmlDecoder.readObject();
+			competitorList = (List<CompetitorDTO>)xmlDecoder.readObject();
 			xmlDecoder.close();
 			fileInputStream.close();
 			
 		} catch (IOException e) {
+			System.out.println("File is not created yet.");
 			e.printStackTrace();
 		}
 		return competitorList;
