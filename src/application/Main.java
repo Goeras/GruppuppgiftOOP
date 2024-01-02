@@ -25,7 +25,12 @@ public class Main extends Application{
 		
 		Button btnAddCompetitor = new Button("Lägg till deltagare");
 		btnAddCompetitor.setOnAction(e -> {
-			competitorStage.AddCompetitorWindow();
+			competitorStage.addCompetitorWindow();
+		});
+		
+		Button btnRemoveCompetitor = new Button("Ta bort deltagare");
+		btnRemoveCompetitor.setOnAction(e -> {
+			competitorStage.removeCompetitorWindow();
 		});
 
 		primaryStage.setOnCloseRequest( e -> {
@@ -60,7 +65,7 @@ public class Main extends Application{
 		});
 
 		VBox vBox = new VBox();
-		vBox.getChildren().addAll(btnAddCompetitor, btnContestType, btnCompetition, btnQuit);
+		vBox.getChildren().addAll(btnAddCompetitor, btnRemoveCompetitor, btnContestType, btnCompetition, btnQuit);
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setSpacing(10);
 		vBox.setPadding(new Insets(10));
