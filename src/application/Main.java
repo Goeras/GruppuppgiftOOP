@@ -21,6 +21,8 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		competitorStage.deserialize();
+		primaryStage.setTitle("Tour de ski");
+		
 		Button btnAddCompetitor = new Button("Lägg till deltagare");
 		btnAddCompetitor.setOnAction(e -> {
 			competitorStage.AddCompetitorWindow();

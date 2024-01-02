@@ -9,9 +9,7 @@ import java.util.List;
 public class GamePlay {
 
 	// Attribut
-	String startTime; // Huvudsaklig starttid. (masstart eller första startande)
-	String startType; // "Massstart" / "Jaktstart" / "Individuellstart". sätts av användaren.
-	int diffTime = 0;
+	String startType; // "Massstart" / "Jaktstart (15/30)" / "Individuellstart". sätts av användaren.
 	List<Competitor> competitorList = new ArrayList<>(); // Lista över deltagare - Competitor
 	
 	// Konstruktorer
@@ -41,8 +39,6 @@ public class GamePlay {
 				c.setStartNumber(startNumber);
 				startNumber++;
 				c.setStartTime(LocalTime.now());
-				//c.addTime(c.getStartTime()); // Lägger till objektets starttid i objektets timesList.
-				//c.addTimeStamp(); // lägger till en LocalTime.now() för varje objekt.
 			}
 		}
 		else if(startType.equals("Jaktstart 15sek")) // Start med 30 sekunders mellanrum.

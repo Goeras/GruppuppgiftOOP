@@ -36,7 +36,7 @@ public class CompetitorStage {
 	private Competitor choice;
 	private boolean gameStarted;
 	private boolean winner = false;
-	public ObservableList<Competitor> competitors = FXCollections.observableArrayList(); // Här skall Competitor-objekten läggas till efter skapande.
+	public ObservableList<Competitor> competitors = FXCollections.observableArrayList();
 
 	@SuppressWarnings("unchecked") // Varningen gäller blandningen av datatyperna String och AtomicInteger i TableView table.
 	public void startCompetitorStage() throws Exception {
