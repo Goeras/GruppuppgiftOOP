@@ -44,16 +44,9 @@ public class CompetitorStage {
 		stage.setTitle("Tour de Ski");
 		stage.initModality(Modality.APPLICATION_MODAL);
 
-		// För testningens skull..
+		// Dummie-åkare skapas om användaren ej lagt till egna åkare.
 		if (competitors.isEmpty()){
-		Competitor c1 = new Competitor();
-		c1.setName("Markus Göras");
-		c1.setSkiTeam("Falu SK");
-		competitors.add(c1);
-		Competitor c2 = new Competitor();
-		c2.setName("Hasse Alfredsson");
-		c2.setSkiTeam("Malmö SK");
-		competitors.add(c2);
+		addBotCompetitors();
 		}
 
 		// Label
@@ -74,7 +67,7 @@ public class CompetitorStage {
 			setFinishTime.setVisible(true);
 			startGame.setVisible(false);
 			}
-		}); // Lägger till objektets startTime i sin tidslista.
+		}); 
 
 		setTime = new Button("Logga delmål");
 		setTime.setVisible(false);
@@ -257,5 +250,30 @@ public class CompetitorStage {
     	for (Competitor c : competitors) {
     		c.setFinished(false);
     	}
+    }
+    
+    public void addBotCompetitors()
+    {
+    	Competitor c1 = new Competitor();
+		c1.setName("Evert Ljusberg");
+		c1.setSkiTeam("Östersund SK");
+		
+		Competitor c2 = new Competitor();
+		c2.setName("Hasse Alfredsson");
+		c2.setSkiTeam("Malmö SK");
+		
+		Competitor c3 = new Competitor();
+		c3.setName("Thorsten Flinck");
+		c3.setSkiTeam("Solna SK");
+		
+		Competitor c4 = new Competitor();
+		c4.setName("Kenta Gustafsson");
+		c4.setSkiTeam("Nacka SK");
+		
+		Competitor c5 = new Competitor();
+		c5.setName("Karl Moraeus");
+		c5.setSkiTeam("Orsa SK");
+		
+		competitors.addAll(c1,c2,c3,c4,c5);
     }
 }

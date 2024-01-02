@@ -5,14 +5,14 @@
    <object class="application.CompetitorDTO">
     <void property="finishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:04.904686100</string>
+      <string>00:00:07.974574600</string>
      </object>
     </void>
     <void property="name">
-     <string>Markus Göras</string>
+     <string>Evert Ljusberg</string>
     </void>
     <void property="skiTeam">
-     <string>Falu SK</string>
+     <string>Östersund SK</string>
     </void>
    </object>
   </void>
@@ -20,7 +20,7 @@
    <object class="application.CompetitorDTO">
     <void property="finishTime">
      <object class="java.time.LocalTime" method="parse">
-      <string>00:00:06.410978900</string>
+      <string>00:00:10.287460300</string>
      </object>
     </void>
     <void property="name">
@@ -28,6 +28,51 @@
     </void>
     <void property="skiTeam">
      <string>Malmö SK</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:12.246366700</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Thorsten Flinck</string>
+    </void>
+    <void property="skiTeam">
+     <string>Solna SK</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:13.985688100</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Kenta Gustafsson</string>
+    </void>
+    <void property="skiTeam">
+     <string>Nacka SK</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.CompetitorDTO">
+    <void property="finishTime">
+     <object class="java.time.LocalTime" method="parse">
+      <string>00:00:15.624064600</string>
+     </object>
+    </void>
+    <void property="name">
+     <string>Karl Moraeus</string>
+    </void>
+    <void property="skiTeam">
+     <string>Orsa SK</string>
     </void>
    </object>
   </void>
